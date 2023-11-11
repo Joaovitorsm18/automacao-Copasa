@@ -20,7 +20,7 @@ app.post('/process-login', (req, res) => {
     const { cpf, senha } = req.body;
 
     // Use exec para chamar o script Node.js com os parâmetros
-    exec(`node automacaoCopasa.js ${cpf} ${senha}`, (error, stdout, stderr) => {
+    exec(`node ${path.join(__dirname, 'automacaoCopasa.js')} ${cpf} ${senha}`, (error, stdout, stderr) => {
         if (error) {
             console.error(`Erro na execução do script: ${error.message}`);
             res.status(500).send('Erro na execução do script');
