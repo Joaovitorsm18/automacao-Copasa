@@ -1,7 +1,8 @@
 {
   "scripts": {
     "start": "node index.js",
-    "test": "echo 'Testing Vercel deployment'"
+    "test": "echo 'Testing Vercel deployment'",
+    "build": "npm install"
   },
   "dependencies": {
     "exceljs": "^4.4.0",
