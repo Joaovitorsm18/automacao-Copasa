@@ -1,36 +1,19 @@
 const { exec } = require('child_process');
 const express = require('express');
 const app = express();
-const port = 3000;
+const path = require('path'); // Adicionado para lidar com caminhos de arquivo
+
+const port = process.env.PORT || 3000;
 
 // Configuração do middleware para lidar com dados do formulário
 app.use(express.urlencoded({ extended: true }));
 
-// Página de login
+
+// Rota para a página de login
 app.get('/', (req, res) => {
-    res.send(`
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Login</title>
-        </head>
-        <body>
-            <h2>Login</h2>
-            <form action="/process-login" method="post">
-                <label for="cpf">CPF:</label>
-                <input type="text" id="cpf" name="cpf" required>
-                <br>
-                <label for="senha">Senha:</label>
-                <input type="password" id="senha" name="senha" required>
-                <br>
-                <button type="submit">Login</button>
-            </form>
-        </body>
-        </html>
-    `);
+    res.sendFile(path.join(__dirname, 'login.html'));
 });
+
 
 // Rota para processar o formulário
 app.post('/process-login', (req, res) => {
