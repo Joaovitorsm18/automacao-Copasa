@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Página de login
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
+    res.sendFile(__dirname + '/login.html');
 });
 
 // Rota para processar o formulário
