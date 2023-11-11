@@ -1,5 +1,4 @@
 const { exec } = require('child_process');
-
 const express = require('express');
 const app = express();
 const port = 3000;
@@ -9,7 +8,28 @@ app.use(express.urlencoded({ extended: true }));
 
 // Página de login
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/login.html');
+    res.send(`
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Login</title>
+        </head>
+        <body>
+            <h2>Login</h2>
+            <form action="/process-login" method="post">
+                <label for="cpf">CPF:</label>
+                <input type="text" id="cpf" name="cpf" required>
+                <br>
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha" required>
+                <br>
+                <button type="submit">Login</button>
+            </form>
+        </body>
+        </html>
+    `);
 });
 
 // Rota para processar o formulário
@@ -32,7 +52,6 @@ app.post('/process-login', (req, res) => {
         res.send('Login processado com sucesso!');
     });
 });
-
 
 // Inicia o servidor
 app.listen(port, () => {
