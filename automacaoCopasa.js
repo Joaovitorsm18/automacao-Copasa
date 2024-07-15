@@ -31,7 +31,7 @@ async function runScript(cpf, senha, pesquisa) {
 
         for (const consulta of pesquisasArray) {
 
-            await page.waitForTimeout(10000);
+            await page.waitForTimeout(15000);
 
             await page.type('input[type="search"]', consulta);
 
